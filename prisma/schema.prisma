@@ -1,0 +1,53 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mongodb"
+  url      = env("DATABASE_URL")
+}
+
+type ParkinglotsCar {
+  capacity    Int
+  rateperhour Int
+}
+
+type ParkinglotsHatchback {
+  capacity    Int
+  rateperhour Int
+}
+
+type ParkinglotsSuvCar {
+  capacity    Int
+  rateperhour Int
+}
+
+type ParkinglotsTwoWheeler {
+  capacity    Int
+  rateperhour Int
+}
+
+model parkedvehicles {
+  id             String      @id @default(auto()) @map("_id") @db.ObjectId
+  amount_paid    Int?        @default(0)
+  area_name      String
+  created_at     DateTime    @default(now())
+  duration       Int
+  entry_time     DateTime    @default(now())
+  exit_time      DateTime?   @updatedAt
+  parkinglot_id  String      @db.ObjectId
+  parkinglot     parkinglots @relation(fields: [parkinglot_id], references: [id])
+  updated_at     DateTime    @default(now())
+  vehicle_number String
+  vehicle_type   String
+}
+
+model parkinglots {
+  id             String                @id @default(auto()) @map("_id") @db.ObjectId
+  area_name      String                @unique
+  car            ParkinglotsCar
+  hatchback      ParkinglotsHatchback
+  suv_car        ParkinglotsSuvCar     @map("suv-car")
+  two_wheeler    ParkinglotsTwoWheeler
+  parkedvehicles parkedvehicles[]
+}
