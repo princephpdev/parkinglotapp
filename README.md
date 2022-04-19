@@ -42,7 +42,7 @@ $ npm run start:prod
 
 ## API DOCS (Swagger UI)
 
-After running app in watch mode, Go to [localhost:3000/docs](localhost:3000/docs)
+After running app in watch mode, Go to [http://localhost:3000/docs](http://localhost:3000/docs)
 
 ## Stay in touch
 
