@@ -22,9 +22,9 @@ $ npx prisma generate
 
 ## Connect MongoDB
 
-Go to MongoDB Atlas and create a new mongodb instance
-Copy .env.example as .env
-Paste mongodb url into .env file
+1. Go to MongoDB Atlas and create a new mongodb instance
+2. Copy .env.example as .env
+3. Paste mongodb url into .env file
 
 > Try using mongodb Atlas, OR if you want to add mongodb local, create a replica set otherwise app would not work
 ## Running the app
