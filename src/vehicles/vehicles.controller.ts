@@ -1,6 +1,6 @@
 import { Controller, Get, Post, Body, Patch, Param, Delete, HttpException } from '@nestjs/common';
 import { VehiclesService, vehicleType } from './vehicles.service';
-import { ApiQuery, ApiTags } from '@nestjs/swagger';
+import { ApiForbiddenResponse, ApiInternalServerErrorResponse, ApiNotFoundResponse, ApiQuery, ApiServiceUnavailableResponse, ApiTags } from '@nestjs/swagger';
 import { CreateVehicleDto } from './dto/create-vehicle.dto';
 
 @ApiTags('Vehicles')
@@ -10,8 +10,12 @@ export class VehiclesController {
     private readonly vehiclesService: VehiclesService
     ) {}
 
-  @ApiQuery({ name: 'vehicle_type', enum: vehicleType })
   @Post('park')
+  @ApiQuery({ name: 'vehicle_type', enum: vehicleType })
+  @ApiNotFoundResponse({'description':'Invalid parking area name'})
+  @ApiForbiddenResponse({'description':'Limit exceed for parking'})
+  @ApiForbiddenResponse({'description':'Vehicle Already Parked'})
+  @ApiInternalServerErrorResponse({'description': 'Something went wrong'})
   async park(@Body() createVehicleDto: CreateVehicleDto) {
     try{
       const response = await this.vehiclesService.park(createVehicleDto);

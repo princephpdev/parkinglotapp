@@ -28,8 +28,9 @@ export class ParkinglotsService {
   }
 
   async create(data: Prisma.parkinglotsCreateInput): Promise<parkinglots> {
+    const newdata = {...data, area_name: data.area_name.toLowerCase()}
     return await this.prisma.parkinglots.create(
-      {data}
+      {data:newdata}
     );
   }
 

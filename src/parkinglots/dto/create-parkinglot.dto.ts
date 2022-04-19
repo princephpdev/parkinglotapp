@@ -25,15 +25,27 @@ export class CreateParkinglotDto {
     @ApiProperty()
     area_name: string;
   
-    @ApiProperty()
+    @ApiProperty({
+      description: "Add capacity and rateperhour",
+      example: {'capacity': 1, 'rateperhour': 1}
+    })
     car: ParkinglotsCar;
   
-    @ApiProperty()
+    @ApiProperty({
+      description: "Add capacity and rateperhour",
+      example: {'capacity': 1, 'rateperhour': 1}
+    })
     hatchback: ParkinglotsHatchback;
 
-    @ApiProperty()
+    @ApiProperty({
+      description: "Add capacity and rateperhour",
+      example: {'capacity': 1, 'rateperhour': 1}
+    })
     suv_car: ParkinglotsSuvCar;
 
-    @ApiProperty()
+    @ApiProperty({
+      description: "Add capacity and rateperhour",
+      example: {'capacity': 1, 'rateperhour': 1}
+    })
     two_wheeler: ParkinglotsTwoWheeler;
 }
